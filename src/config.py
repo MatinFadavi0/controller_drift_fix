@@ -128,7 +128,7 @@ def model_path(stick):
 # MLP architecture / training hyperparameters
 # ---------------------------------------------------------------------------
 HIDDEN_SIZES = [12]      # one hidden layer of 12 units; add more ints for more layers
-LEARNING_RATE = 0.05
+LEARNING_RATE = 0.1
 EPOCHS = 3000
 VAL_SPLIT = 0.2
 SEED = 42
