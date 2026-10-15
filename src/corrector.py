@@ -78,7 +78,9 @@ class StickCorrector:
         self.meta = meta
         self._y_std = (Standardizer.from_dict(meta["target_standardizer"])
                        if "target_standardizer" in meta else None)
-        self._window = FeatureWindow.from_meta(meta)
+        window = FeatureWindow.from_meta(meta)
+        if window.to_meta() != self._window.to_meta():
+            self._window = window  # otherwise keep the live history / push memory
         if self.mode == "off" or self.mode not in MODES:
             self.mode = meta.get("preferred_mode", "model")
 
