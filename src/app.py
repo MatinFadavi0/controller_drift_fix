@@ -18,7 +18,6 @@ Usage:
                                    # (drag inside a stick circle to move it)
 """
 import argparse
-import json
 import math
 import os
 import sys
@@ -32,6 +31,7 @@ import reader  # noqa: E402  (sets SDL hints before pygame starts)
 import pygame  # noqa: E402
 
 import config  # noqa: E402
+import settings as settings_file  # noqa: E402
 from calibration import CalibrationSession, angle_to_xy, full_script, rest_script  # noqa: E402
 from corrector import StickCorrector  # noqa: E402
 from reader import STICKS, PadState  # noqa: E402
@@ -118,20 +118,6 @@ class Button:
         return False
 
 
-def load_settings():
-    try:
-        with open(config.SETTINGS_PATH) as f:
-            return json.load(f)
-    except (OSError, ValueError):
-        return {}
-
-
-def save_settings(data):
-    os.makedirs(os.path.dirname(config.SETTINGS_PATH), exist_ok=True)
-    with open(config.SETTINGS_PATH, "w") as f:
-        json.dump(data, f, indent=2)
-
-
 # ---------------------------------------------------------------------------
 # the app
 # ---------------------------------------------------------------------------
@@ -144,7 +130,7 @@ class App:
         self.fonts = Fonts()
         self.clock = pygame.time.Clock()
         self.simulate = simulate
-        self.settings = load_settings()
+        self.settings = settings_file.load()
 
         self.reader = None
         self.own_ids = set()          # instance ids of our own virtual pad(s)
@@ -190,7 +176,7 @@ class App:
         if self.reader is not None and not self.simulate:
             self.settings["device_guid"] = self.reader.guid
         try:
-            save_settings(self.settings)
+            settings_file.save(self.settings)
         except OSError as e:
             self.log(f"Could not save settings: {e}")
 
