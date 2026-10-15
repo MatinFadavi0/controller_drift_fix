@@ -1,0 +1,9 @@
+# Math/array library only -- no ML/DL frameworks. All model code
+# (forward pass, backprop, gradient descent) is hand-written in src/model.py.
+numpy>=1.24
+
+# Controller input reading
+pygame>=2.5
+
+# Virtual controller output (Windows only; requires ViGEmBus driver, see README)
+vgamepad>=0.0.8
