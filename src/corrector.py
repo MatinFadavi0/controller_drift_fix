@@ -38,9 +38,14 @@ def radial_deadzone(x, y, deadzone):
     return x / r * scaled, y / r * scaled
 
 
-def offset_correct(x, y, offset, rim_radius):
-    """Baseline correction (before the deadzone)."""
-    return (x - offset[0]) / rim_radius, (y - offset[1]) / rim_radius
+def offset_correct(x, y, offset, reach):
+    """Baseline correction (before the deadzone): subtract the resting
+    offset, then stretch each half-axis by how far it actually reaches
+    (reach = [+x, -x, +y, -y]), since worn sticks often lose range on one
+    side only. Works on floats and numpy arrays alike."""
+    dx, dy = x - offset[0], y - offset[1]
+    return (dx / np.where(dx >= 0, reach[0], reach[1]),
+            dy / np.where(dy >= 0, reach[2], reach[3]))
 
 
 class StickCorrector:
@@ -108,8 +113,8 @@ class StickCorrector:
         meta = self.meta
         if self.mode == "offset":
             cx, cy = offset_correct(x, y, meta.get("rest_offset", (0.0, 0.0)),
-                                    meta.get("rim_radius", 1.0))
-            return radial_deadzone(cx, cy, meta.get("deadzone_offset",
+                                    meta.get("axis_reach", (1.0, 1.0, 1.0, 1.0)))
+            return radial_deadzone(float(cx), float(cy), meta.get("deadzone_offset",
                                                     config.POST_CORRECTION_DEADZONE))
 
         pred = self.mlp.predict(self._x_std.transform(feats[None, :]))[0]
