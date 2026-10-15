@@ -9,10 +9,16 @@ compare that finite-difference gradient against the analytic gradient
 train_step computed. They should match to several decimal places.
 
 Usage:
-    python src/test_model.py
+    python tests/test_model.py
 """
+import os
+import sys
+
 import numpy as np
-from model import MLP
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
+
+from model import MLP  # noqa: E402
 
 
 def numerical_gradient_check():

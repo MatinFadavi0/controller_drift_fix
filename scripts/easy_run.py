@@ -10,15 +10,15 @@ The whole flow in one terminal session, no config editing needed:
     5. Run live drift correction through the virtual Xbox 360 pad
 
 Run command:
-    python src/easy_run.py
+    python scripts/easy_run.py
 
-Prefer a window with live visuals? Use `python src/app.py` instead -- it
+Prefer a window with live visuals? Use `python app.py` instead -- it
 does all of this plus more, and shares the same models and data.
 """
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
 import reader  # noqa: E402  (sets SDL hints before pygame starts)
 

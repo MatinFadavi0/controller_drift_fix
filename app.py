@@ -13,8 +13,8 @@ Everything in one window:
   * remembers your controller, modes and auto-start choice
 
 Usage:
-    python src/app.py              # real controller
-    python src/app.py --simulate   # demo with a simulated drifting pad
+    python app.py              # real controller
+    python app.py --simulate   # demo with a simulated drifting pad
                                    # (drag inside a stick circle to move it)
 """
 import argparse
@@ -25,7 +25,7 @@ import threading
 import time
 from collections import deque
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "src"))
 
 import reader  # noqa: E402  (sets SDL hints before pygame starts)
 import pygame  # noqa: E402

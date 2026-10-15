@@ -9,16 +9,16 @@ without a model passes straight through. Triggers and buttons always pass
 through.
 
 Usage:
-    python src/main.py                 # correct with trained models
-    python src/main.py --passthrough   # no correction: sanity check the plumbing
-    python src/main.py --device 1      # pick another controller index
+    python scripts/main.py                 # correct with trained models
+    python scripts/main.py --passthrough   # no correction: sanity check the plumbing
+    python scripts/main.py --device 1      # pick another controller index
 """
 import argparse
 import os
 import sys
 import time
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
 import reader  # noqa: E402  (sets SDL hints before pygame starts)
 import pygame  # noqa: E402

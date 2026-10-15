@@ -2,7 +2,7 @@
 simulator.py
 
 A simulated worn-out controller, for trying the app without real
-hardware (`python src/app.py --simulate`) and for the automated pipeline
+hardware (`python app.py --simulate`) and for the automated pipeline
 test. It models the drift types the README talks about:
 
   * a constant resting offset

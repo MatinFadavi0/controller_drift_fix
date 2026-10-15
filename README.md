@@ -29,7 +29,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
-python src/app.py
+python app.py
 ```
 
 1. Click **Calibrate** on the drifting stick and follow the prompts.
@@ -37,7 +37,7 @@ python src/app.py
 3. Click **Start correction** and set your game to use the virtual Xbox 360 controller.
 
 Use **Rest refresh** after the controller has warmed up to capture
-changes in drift. Try it without a controller: `python src/app.py --simulate`.
+changes in drift. Try it without a controller: `python app.py --simulate`.
 
 If your game sees both the real and virtual pad, hide the real one with
 [HidHide](https://github.com/nefarius/HidHide) (allow Python in its list).
@@ -46,10 +46,10 @@ If you use DS4Windows, close it first.
 ### Command line
 
 ```bash
-python src/easy_run.py                # calibrate, train and run in one go
-python src/calibrate.py --stick right # record calibration data
-python src/train.py --stick right     # train a model
-python src/main.py                    # run correction without the window
+python scripts/easy_run.py                 # calibrate, train and run in one go
+python scripts/calibrate.py --stick right  # record calibration data
+python scripts/train.py --stick right      # train a model
+python scripts/main.py                     # run correction without the window
 ```
 
 ## How it works
@@ -65,6 +65,6 @@ See [src/model.py](src/model.py) for the network and [src/training.py](src/train
 ## Tests
 
 ```bash
-python src/test_model.py      # numerical gradient check
-python src/test_pipeline.py   # end-to-end test on a simulated drifting stick
+python tests/test_model.py      # numerical gradient check
+python tests/test_pipeline.py   # end-to-end test on a simulated drifting stick
 ```

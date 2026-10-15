@@ -5,7 +5,7 @@ All the tunable knobs live here. Most controllers are recognised by SDL's
 GameController database, in which case sticks/triggers/buttons are mapped
 automatically and AXIS_MAP / BUTTON_MAP below are NOT used. They only
 matter for unrecognised pads (the app tells you which mode it's in). For
-those, run `python src/diagnostics.py`, wiggle every stick/button, and
+those, run `python scripts/diagnostics.py`, wiggle every stick/button, and
 update AXIS_MAP / BUTTON_MAP accordingly.
 """
 import os

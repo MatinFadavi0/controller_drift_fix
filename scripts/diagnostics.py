@@ -6,7 +6,7 @@ figure out which pygame index corresponds to which physical control on
 YOUR controller, then fill those into config.py (AXIS_MAP / BUTTON_MAP).
 
 Usage:
-    python src/diagnostics.py
+    python scripts/diagnostics.py
 """
 import time
 import pygame

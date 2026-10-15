@@ -7,17 +7,17 @@ stick and appends it to data/<stick>_samples.csv (it never overwrites, so
 running it again -- e.g. after 20 minutes of play -- adds more data).
 
 Usage:
-    python src/calibrate.py                  # full routine, config.TARGET_STICK
-    python src/calibrate.py --stick left
-    python src/calibrate.py --rest           # quick resting-drift refresh only
-Then train with:  python src/train.py --stick <same stick>
+    python scripts/calibrate.py                  # full routine, config.TARGET_STICK
+    python scripts/calibrate.py --stick left
+    python scripts/calibrate.py --rest           # quick resting-drift refresh only
+Then train with:  python scripts/train.py --stick <same stick>
 """
 import argparse
 import os
 import sys
 import time
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
 import reader  # noqa: E402  (sets SDL hints before pygame starts)
 import pygame  # noqa: E402
@@ -79,7 +79,7 @@ def main():
     if rows:
         save_session(args.stick, rows)
         print(f"Appended to {config.data_path(args.stick)}")
-        print(f"Next: python src/train.py --stick {args.stick}")
+        print(f"Next: python scripts/train.py --stick {args.stick}")
 
 
 if __name__ == "__main__":

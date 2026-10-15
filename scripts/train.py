@@ -7,14 +7,14 @@ recorded for it, prints the offset-baseline vs model comparison, and
 saves models/<stick>_model.json.
 
 Usage:
-    python src/train.py                 # config.TARGET_STICK
-    python src/train.py --stick left
+    python scripts/train.py                 # config.TARGET_STICK
+    python scripts/train.py --stick left
 """
 import argparse
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
 import config  # noqa: E402
 import settings  # noqa: E402

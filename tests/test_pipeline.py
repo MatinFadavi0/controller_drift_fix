@@ -8,7 +8,7 @@ plays back fresh movements and measures the error against the TRUE
 stick position for: no correction, the offset fix, and the model.
 
 Usage:
-    python src/test_pipeline.py
+    python tests/test_pipeline.py
 """
 import math
 import os
@@ -18,7 +18,7 @@ import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
 import config  # noqa: E402
 from calibration import CalibrationSession, angle_to_xy, full_script  # noqa: E402
